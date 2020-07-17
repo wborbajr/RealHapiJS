@@ -4,7 +4,9 @@ const Hapi = require("@hapi/hapi");
 const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
 const HapiSwagger = require("hapi-swagger");
-const Pack = require("../package.json");
+const Package = require("../package.json");
+const Colors = require("colors");
+const Emoji = require("node-emoji");
 
 //
 const RealRoutes = require("./routes/realRoutes");
@@ -22,8 +24,18 @@ const init = async () => {
   const swaggerOptions = {
     info: {
       title: "RealHapiJS API Documentation",
-      version: Pack.version,
+      version: "v: " + Package.version,
+      description: "Proof of Concept with HapiJS",
+      contact: {
+        name: "Waldir Borba Junior",
+        email: "wborbajr@gmail.com",
+      },
+      license: {
+        name: "License " + Package.license,
+      },
     },
+    consumes: ["application/json"],
+    produces: ["application/json"],
   };
 
   await server.register([
@@ -39,7 +51,11 @@ const init = async () => {
   await server.route([...cf.mapRoutes(new RealRoutes(), RealRoutes.methods())]);
 
   await server.start();
-  console.log("Server running on %s", server.info.uri);
+  console.log(
+    Emoji.get("rocket"),
+    `Server running on ${server.info.uri}`.green,
+    Emoji.get("rocket")
+  );
 };
 
 process.on("unhandledRejection", (err) => {

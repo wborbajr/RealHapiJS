@@ -5,7 +5,7 @@ class RealRoutes extends BaseRoute {
     return {
       path: "/",
       method: "GET",
-      config: {
+      options: {
         description: "Default",
         notes: "Returns a Hello World!",
         tags: ["api"], // ADD THIS TAG
@@ -33,3 +33,27 @@ class RealRoutes extends BaseRoute {
 }
 
 module.exports = RealRoutes;
+
+// {
+//   method: 'PUT',
+//   path: '/store/{id}',
+//   options: {
+//       handler: handlers.storeUpdate,
+//       plugins: {
+//           'hapi-swagger': {
+//               responses: {
+//                   '400': {
+//                       'description': 'BadRequest'
+//                   }
+//               },
+//               payloadType: 'form'
+//           }
+//       },
+//       tags: ['api'],
+//       validate: {
+//           payload: Joi.object({
+//               a: Joi.number().required().description('the first number')
+//           })
+//       }
+//   }
+// }
