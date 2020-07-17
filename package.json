@@ -1,0 +1,20 @@
+{
+  "name": "RealHapiJS",
+  "version": "1.0.0",
+  "description": "RealHapiJS",
+  "main": "src/bootstrap.js",
+  "scripts": {
+    "start": "nodemon src/bootstrap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Waldir Borba Junior <wborbajr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4"
+  }
+}
