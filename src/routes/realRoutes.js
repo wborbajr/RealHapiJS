@@ -1,10 +1,15 @@
 const BaseRoute = require("./base/baseRoute");
 
-class HapiRoutes extends BaseRoute {
+class RealRoutes extends BaseRoute {
   default() {
     return {
       path: "/",
       method: "GET",
+      config: {
+        description: "Default",
+        notes: "Returns a Hello World!",
+        tags: ["api"], // ADD THIS TAG
+      },
       handler: (request, h) => {
         return "Hello World!";
       },
@@ -15,6 +20,11 @@ class HapiRoutes extends BaseRoute {
     return {
       path: "/ping",
       method: "GET",
+      config: {
+        description: "Ping",
+        notes: "Returns a pong id the server it is alive",
+        tags: ["api"], // ADD THIS TAG
+      },
       handler: (request, h) => {
         return "pong!";
       },
@@ -22,4 +32,4 @@ class HapiRoutes extends BaseRoute {
   }
 }
 
-module.exports = HapiRoutes;
+module.exports = RealRoutes;

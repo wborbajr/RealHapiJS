@@ -1,6 +1,10 @@
 "use strict";
 
 const Hapi = require("@hapi/hapi");
+const Inert = require("@hapi/inert");
+const Vision = require("@hapi/vision");
+const HapiSwagger = require("hapi-swagger");
+const Pack = require("../package.json");
 
 //
 const RealRoutes = require("./routes/realRoutes");
@@ -15,8 +19,24 @@ const init = async () => {
     host: "localhost",
   });
 
+  const swaggerOptions = {
+    info: {
+      title: "RealHapiJS API Documentation",
+      version: Pack.version,
+    },
+  };
+
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    },
+  ]);
+
   // mapping routes
-  server.route([...cf.mapRoutes(new RealRoutes(), RealRoutes.methods())]);
+  await server.route([...cf.mapRoutes(new RealRoutes(), RealRoutes.methods())]);
 
   await server.start();
   console.log("Server running on %s", server.info.uri);
