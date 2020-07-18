@@ -1,7 +1,7 @@
 // Routes split
 
 class CommonFunctions {
-  mapRoutes(instance, methods) {
+  static mapRoutes(instance, methods) {
     return methods.map((method) => instance[method]());
   }
 }
